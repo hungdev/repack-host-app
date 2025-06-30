@@ -43,7 +43,8 @@ export default env => {
         filename: 'RepackHostApp.container.js.bundle',
         dts: false,
         remotes: {
-          ChildApp: `ChildApp@http://localhost:9000/${platform}/ChildApp.container.js.bundle`,
+          MiniApp: `MiniApp@http://localhost:9000/${platform}/MiniApp.container.js.bundle`,
+          AuthMiniApp: `AuthMiniApp@http://localhost:9005/${platform}/AuthMiniApp.container.js.bundle`,
           // ChildApp: `ChildApp@http://localhost:9000/generated/${platform}/mf-manifest.json`,
         },
         shared: Object.fromEntries(

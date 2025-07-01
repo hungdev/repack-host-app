@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
-const LoginScreen = React.lazy(() => import('AuthMiniApp/Login'));
+// const LoginScreen = React.lazy(() => import('AuthMiniApp/Login'));
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -18,7 +18,7 @@ export const HomeScreen = () => {
         title="Child Auth app"
         onPress={() => navigation.navigate('AuthMiniApp')}
       />
-      <LoginScreen />
+      {/* <LoginScreen /> */}
     </View>
   );
 };

@@ -39,7 +39,7 @@ export default env => {
         platform,
       }),
       new Repack.plugins.ModuleFederationPluginV2({
-        name: 'HostApp',
+        name: 'RepackHostApp',
         filename: 'RepackHostApp.container.js.bundle',
         dts: false,
         remotes: {
@@ -47,6 +47,9 @@ export default env => {
           AuthMiniApp: `AuthMiniApp@http://localhost:9005/${platform}/AuthMiniApp.container.js.bundle`,
           StateManagementApp: `StateManagementApp@http://localhost:9003/${platform}/StateManagementApp.container.js.bundle`,
           // ChildApp: `ChildApp@http://localhost:9000/generated/${platform}/mf-manifest.json`,
+        },
+        exposes: {
+          './SharedRedux': './src/shared/index.ts',
         },
         shared: Object.fromEntries(
           Object.entries(pkg.dependencies).map(([dep, version]) => {

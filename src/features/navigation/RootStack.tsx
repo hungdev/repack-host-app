@@ -6,7 +6,7 @@ import {HomeScreen} from '../home/screens';
 
 const Stack = createNativeStackNavigator();
 const MiniApp = React.lazy(() => import('MiniApp/App'));
-const AuthMiniApp = React.lazy(() => import('AuthMiniApp/App'));
+// const AuthMiniApp = React.lazy(() => import('AuthMiniApp/App'));
 
 const RootStack = () => {
   return (
@@ -14,7 +14,7 @@ const RootStack = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="MiniApp" component={MiniApp} />
-        <Stack.Screen name="AuthMiniApp" component={AuthMiniApp} />
+        {/* <Stack.Screen name="AuthMiniApp" component={AuthMiniApp} /> */}
       </Stack.Navigator>
     </Suspense>
   );

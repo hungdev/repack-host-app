@@ -24,3 +24,8 @@ declare module 'StateManagementApp/store' {
   const authSlice: any;
   export default authSlice;
 }
+
+declare module 'ChildAuthApp/Login' {
+  const authSlice: any;
+  export default authSlice;
+}

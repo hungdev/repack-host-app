@@ -46,6 +46,7 @@ export default env => {
           MiniApp: `MiniApp@http://localhost:9000/${platform}/MiniApp.container.js.bundle`,
           AuthMiniApp: `AuthMiniApp@http://localhost:9005/${platform}/AuthMiniApp.container.js.bundle`,
           StateManagementApp: `StateManagementApp@http://localhost:9003/${platform}/StateManagementApp.container.js.bundle`,
+          // ChildAuthApp: `ChildAuthApp@http://localhost:9002/${platform}/ChildAuthApp.container.js.bundle`,
           // ChildApp: `ChildApp@http://localhost:9000/generated/${platform}/mf-manifest.json`,
         },
         exposes: {

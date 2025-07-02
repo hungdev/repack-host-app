@@ -44,27 +44,35 @@ export default env => {
         dts: false,
         remotes: {
           MiniApp: `MiniApp@http://localhost:9000/${platform}/MiniApp.container.js.bundle`,
-          AuthMiniApp: `AuthMiniApp@http://localhost:9005/${platform}/AuthMiniApp.container.js.bundle`,
-          StateManagementApp: `StateManagementApp@http://localhost:9003/${platform}/StateManagementApp.container.js.bundle`,
+          // AuthMiniApp: `AuthMiniApp@http://localhost:9005/${platform}/AuthMiniApp.container.js.bundle`,
+          // StateManagementApp: `StateManagementApp@http://localhost:9003/${platform}/StateManagementApp.container.js.bundle`,
           // ChildAuthApp: `ChildAuthApp@http://localhost:9002/${platform}/ChildAuthApp.container.js.bundle`,
           // ChildApp: `ChildApp@http://localhost:9000/generated/${platform}/mf-manifest.json`,
         },
         exposes: {
           './SharedRedux': './src/shared/index.ts',
         },
-        shared: Object.fromEntries(
-          Object.entries(pkg.dependencies).map(([dep, version]) => {
-            return [
-              dep,
-              {
-                singleton: true,
-                eager: true,
-                requiredVersion: version,
-                version: version.replace('^', ''),
-              },
-            ];
-          }),
-        ),
+        shared: {
+          // Explicitly share your custom modules
+          './src/shared/index.ts': {
+            singleton: true,
+            eager: true,
+          },
+          // Share dependencies
+          ...Object.fromEntries(
+            Object.entries(pkg.dependencies).map(([dep, version]) => {
+              return [
+                dep,
+                {
+                  singleton: true,
+                  eager: true,
+                  requiredVersion: version,
+                  version: version.replace('^', ''),
+                },
+              ];
+            }),
+          ),
+        },
       }),
       // Supports for new architecture - Hermes can also use JS, it's not a requirement,
       // it will still work the same but it's for performance optimization

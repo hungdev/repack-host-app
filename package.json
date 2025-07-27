@@ -7,7 +7,11 @@
     "ios": "react-native run-ios --port 9009",
     "lint": "eslint .",
     "start": "react-native start --port 9009",
-    "test": "jest"
+    "test": "jest",
+    "bundle": "npm run bundle-ios && npm run bundle-android",
+    "bundle-ios": "react-native bundle --config rspack.config.mjs --platform ios --entry-file index.js --dev=false --bundle-output build/generated/ios/index.bundle --assets-dest build/generated/ios",
+    "bundle-android": "react-native bundle --config rspack.config.mjs --platform android --entry-file index.js --dev=false --bundle-output build/generated/android/index.bundle --assets-dest build/generated/android",
+    "serve:container": "npx serve build/generated -p 9009 --cors"
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.14",

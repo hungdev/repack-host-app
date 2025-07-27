@@ -12,12 +12,14 @@ export const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const state = useSelector((state: any) => state.user.name);
+  const todos = useSelector((state: any) => state.todos?.list || []);
 
   console.log('state', state);
 
   return (
     <View style={styles.container}>
       <Text>Home screen {JSON.stringify(state)}</Text>
+      <Text>Child data {JSON.stringify(todos)}</Text>
       <Button
         title="Child app"
         onPress={() => navigation.navigate('MiniApp')}

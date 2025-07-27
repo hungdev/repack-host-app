@@ -6,6 +6,8 @@ export {
   getReducerNames,
   getReducers,
   isStoreInitialized,
+  addReducers,
+  removeReducers,
 } from './sharedStore';
 export {StoreProvider} from './Provider';
 export {useAppSelector, useAppDispatch} from './hooks';

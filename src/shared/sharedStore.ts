@@ -40,7 +40,7 @@ export const initStore = (): Store => {
   return storeManager.store;
 };
 
-// Thêm reducer
+// Thêm một reducer
 export const addReducer = (name: string, reducer: Reducer): void => {
   storeManager.reducers[name] = reducer;
 
@@ -51,6 +51,27 @@ export const addReducer = (name: string, reducer: Reducer): void => {
   } else {
     console.log(
       `✅ Added reducer: ${name} (will be applied when store initializes)`,
+    );
+  }
+};
+
+// Thêm nhiều reducers cùng lúc
+export const addReducers = (reducers: Record<string, Reducer>): void => {
+  Object.entries(reducers).forEach(([name, reducer]) => {
+    storeManager.reducers[name] = reducer;
+  });
+
+  // Chỉ replace reducer một lần sau khi add tất cả
+  if (storeManager.store) {
+    storeManager.store.replaceReducer(combineReducers(storeManager.reducers));
+    console.log(
+      `✅ Added reducers: ${Object.keys(reducers).join(', ')} (store updated)`,
+    );
+  } else {
+    console.log(
+      `✅ Added reducers: ${Object.keys(reducers).join(
+        ', ',
+      )} (will be applied when store initializes)`,
     );
   }
 };
@@ -66,6 +87,22 @@ export const removeReducer = (name: string): void => {
         : () => ({});
     storeManager.store.replaceReducer(newRootReducer);
     console.log(`🗑️ Removed reducer: ${name}`);
+  }
+};
+
+// Xóa nhiều reducers cùng lúc
+export const removeReducers = (names: string[]): void => {
+  names.forEach(name => {
+    delete storeManager.reducers[name];
+  });
+
+  if (storeManager.store) {
+    const newRootReducer =
+      Object.keys(storeManager.reducers).length > 0
+        ? combineReducers(storeManager.reducers)
+        : () => ({});
+    storeManager.store.replaceReducer(newRootReducer);
+    console.log(`🗑️ Removed reducers: ${names.join(', ')}`);
   }
 };
 
